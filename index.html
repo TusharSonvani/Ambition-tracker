@@ -5,6 +5,8 @@
   <title>Ambition Tracker</title>
   <!-- Include Courier Prime font -->
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+  <!-- Include Lottie Player for animations -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
     /* Reset and basic styles */
     * {
@@ -32,6 +34,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     #header-left {
@@ -51,6 +54,12 @@
       color: #aaaaaa;
     }
 
+    #header-right {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
     #theme-toggle {
       cursor: pointer;
       font-size: 16px;
@@ -59,6 +68,7 @@
       background: none;
       color: #ffffff;
       transition: color 0.3s;
+      margin-right: 20px;
     }
 
     #theme-toggle:hover {
@@ -70,7 +80,6 @@
       cursor: pointer;
       text-decoration: underline;
       color: #ffffff;
-      margin-left: 20px;
     }
 
     /* Main content */
@@ -250,7 +259,7 @@
     }
 
     .entry:hover .entry-buttons {
-      display: block;
+      display: flex;
     }
 
     .entry-buttons {
@@ -258,6 +267,7 @@
       top: 10px;
       right: 10px;
       display: none;
+      gap: 5px;
     }
 
     .entry-button {
@@ -266,13 +276,27 @@
       color: #ffffff;
       cursor: pointer;
       font-size: 14px;
-      margin-left: 10px;
+      padding: 5px;
+    }
+
+    .entry-button:hover {
+      color: #e91e63;
     }
 
     .entry-date {
       display: block;
       font-size: 12px;
       color: #aaaaaa;
+      margin-top: 5px;
+    }
+
+    .entry-text {
+      margin-top: 30px; /* Adjust for button spacing */
+    }
+
+    .effort-display {
+      font-size: 14px;
+      color: #00e676;
       margin-top: 5px;
     }
 
@@ -312,6 +336,13 @@
       display: flex;
       flex-wrap: wrap;
       margin-bottom: 20px;
+      justify-content: space-between;
+    }
+
+    .action-button-group {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
     }
 
     .action-button {
@@ -495,12 +526,20 @@
       color: #e91e63;
     }
 
+    body.light-mode #date-display {
+      color: #555555;
+    }
+
     body.light-mode #theme-toggle {
       color: #000000;
     }
 
     body.light-mode #theme-toggle:hover {
       color: #e91e63;
+    }
+
+    body.light-mode #goals-completed {
+      color: #000000;
     }
 
     body.light-mode #goal-input {
@@ -561,14 +600,23 @@
       border: 1px solid #ccc;
     }
 
-    /* Responsive */
-    @media (min-width: 768px) {
-      #goal-form {
-        flex-direction: row;
-      }
+    /* Update goal title color in light mode */
+    body.light-mode .goal-title {
+      color: #000000;
+    }
 
+    /* Ensure theme toggle button visibility */
+    body.light-mode #theme-toggle {
+      color: #000000;
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
       .action-buttons {
-        justify-content: flex-start;
+        flex-direction: column;
+      }
+      .action-button-group {
+        justify-content: center;
       }
     }
   </style>
@@ -579,7 +627,7 @@
       <h1>Ambition Tracker</h1>
       <div id="date-display"></div>
     </div>
-    <div>
+    <div id="header-right">
       <button id="theme-toggle">Toggle Theme</button>
       <span id="goals-completed" onclick="toggleCompletedGoalsModal()">Goals Completed: <span id="completed-count">0</span></span>
     </div>
@@ -635,10 +683,14 @@
 
     <!-- Action Buttons -->
     <div class="action-buttons">
-      <button class="action-button" onclick="toggleStatsModal()" style="background-color: #ff6d00;">View Stats</button>
-      <button class="action-button" onclick="downloadLogs()">Download Logs</button>
-      <button class="action-button" onclick="resetData()" style="background-color: #ff1744;">Reset</button>
-      <button class="action-button" onclick="toggleArchivedGoalsModal()">Archived Goals</button>
+      <div class="action-button-group">
+        <button class="action-button" onclick="resetData()" style="background-color: #ff1744;">Reset</button>
+        <button class="action-button" onclick="toggleStatsModal()" style="background-color: #ff6d00;">View Stats</button>
+      </div>
+      <div class="action-button-group">
+        <button class="action-button" onclick="downloadLogs()">Download Logs</button>
+        <button class="action-button" onclick="toggleArchivedGoalsModal()">Archived Goals</button>
+      </div>
     </div>
   </div>
 
@@ -844,7 +896,21 @@
           entryItem.className = 'entry';
 
           const entryText = document.createElement('div');
+          entryText.className = 'entry-text';
           entryText.textContent = entry.text;
+          entryText.contentEditable = false;
+
+          entryText.addEventListener('click', function() {
+            entryText.contentEditable = true;
+            entryText.focus();
+          });
+
+          entryText.addEventListener('blur', function() {
+            entry.text = entryText.textContent.trim();
+            entry.date = new Date().toISOString();
+            saveData();
+            renderGoals();
+          });
 
           const entryDate = document.createElement('span');
           entryDate.className = 'entry-date';
@@ -857,32 +923,57 @@
           const editEntryButton = document.createElement('button');
           editEntryButton.className = 'entry-button';
           editEntryButton.textContent = 'Edit';
+
           editEntryButton.addEventListener('click', function() {
-            const newText = prompt('Edit Journal Entry:', entry.text);
-            if (newText !== null && newText.trim() !== '') {
-              entry.text = newText.trim();
-              entry.date = new Date().toISOString();
-              saveData();
-              renderGoals();
-            }
+            entryText.contentEditable = true;
+            entryText.focus();
           });
 
           // Delete Entry Button
           const deleteEntryButton = document.createElement('button');
           deleteEntryButton.className = 'entry-button';
           deleteEntryButton.textContent = 'Delete';
+
           deleteEntryButton.addEventListener('click', function() {
-            goal.entries.splice(entryIndex, 1);
-            saveData();
-            renderGoals();
+            if (confirm('Are you sure you want to delete this entry?')) {
+              goal.entries.splice(entryIndex, 1);
+              saveData();
+              renderGoals();
+            }
           });
 
+          // Rate Effort Button
+          const rateEffortButton = document.createElement('button');
+          rateEffortButton.className = 'entry-button';
+          rateEffortButton.textContent = 'Rate Effort';
+
+          rateEffortButton.addEventListener('click', function() {
+            showEffortRatingPrompt(goal, entry);
+          });
+
+          // Place Edit and Delete buttons at the top
           entryButtons.appendChild(editEntryButton);
           entryButtons.appendChild(deleteEntryButton);
 
-          entryItem.appendChild(entryText);
-          entryItem.appendChild(entryDate);
+          // Append buttons and text to entry item
           entryItem.appendChild(entryButtons);
+          entryItem.appendChild(entryText);
+
+          // Rate Effort Button below Edit and Delete
+          const rateEffortButtonContainer = document.createElement('div');
+          rateEffortButtonContainer.style.marginTop = '10px';
+          rateEffortButtonContainer.appendChild(rateEffortButton);
+          entryItem.appendChild(rateEffortButtonContainer);
+
+          // Display Effort Rating if it exists
+          if (entry.effortRating) {
+            const effortDisplay = document.createElement('div');
+            effortDisplay.className = 'effort-display';
+            effortDisplay.textContent = `Effort: ${entry.effortRating}/10`;
+            entryItem.appendChild(effortDisplay);
+          }
+
+          entryItem.appendChild(entryDate);
 
           entriesList.appendChild(entryItem);
         });
@@ -941,11 +1032,11 @@
       goal.entries.unshift(newEntry);
       saveData();
       renderGoals();
-      promptEffortRating(goal, newEntry);
+      promptEffortRatingOption(goal, newEntry);
     }
 
-    // Prompt Effort Rating
-    function promptEffortRating(goal, entry) {
+    // Prompt Effort Rating Option
+    function promptEffortRatingOption(goal, entry) {
       const promptOverlay = document.createElement('div');
       promptOverlay.className = 'prompt-overlay';
 
@@ -953,7 +1044,7 @@
       promptContent.className = 'prompt-content';
 
       const promptText = document.createElement('p');
-      promptText.textContent = 'Would you like to register your effort for this entry?';
+      promptText.textContent = 'Would you like to rate your effort?';
 
       const yesButton = document.createElement('button');
       yesButton.className = 'prompt-button prompt-button-primary';
@@ -979,7 +1070,7 @@
       document.body.appendChild(promptOverlay);
     }
 
-    // Show Effort Rating Prompt
+    // Show Effort Rating Prompt Function with Integrated lottie-player
     function showEffortRatingPrompt(goal, entry) {
       const promptOverlay = document.createElement('div');
       promptOverlay.className = 'prompt-overlay';
@@ -988,33 +1079,43 @@
       promptContent.className = 'prompt-content';
 
       const promptText = document.createElement('p');
-      promptText.textContent = 'Rate your effort (1-10):';
+      promptText.textContent = 'Rate your effort:';
+
+      // lottie-player Element
+      const lottiePlayer = document.createElement('lottie-player');
+      lottiePlayer.setAttribute('src', 'https://lottie.host/f889381a-20db-4e00-9f30-f0c05b754e65/plsaT7x7r6.json');
+      lottiePlayer.setAttribute('background', 'transparent');
+      lottiePlayer.setAttribute('speed', '1');
+      lottiePlayer.setAttribute('style', 'width: 200px; height: 200px; margin: 0 auto;');
+      lottiePlayer.setAttribute('loop', '');
+      lottiePlayer.setAttribute('autoplay', '');
+
+      // Effort Rating Slider
+      const effortSlider = document.createElement('input');
+      effortSlider.type = 'range';
+      effortSlider.min = '1';
+      effortSlider.max = '10';
+      effortSlider.value = entry.effortRating || '1';
+      effortSlider.style.width = '100%';
+      effortSlider.style.marginTop = '20px';
 
       const effortDisplay = document.createElement('div');
       effortDisplay.style.fontSize = '24px';
-      effortDisplay.style.margin = '20px 0';
+      effortDisplay.style.margin = '10px 0';
+      effortDisplay.textContent = `Effort: ${effortSlider.value}/10`;
 
-      let effortRating = 1;
-      effortDisplay.textContent = effortRating;
-
-      const updateEffortDisplay = () => {
-        effortDisplay.textContent = effortRating;
+      effortSlider.oninput = function() {
+        effortDisplay.textContent = `Effort: ${effortSlider.value}/10`;
+        // Adjust animation speed based on effort
+        lottiePlayer.speed = effortSlider.value / 5; // Adjust speed ratio as needed
       };
-
-      promptOverlay.addEventListener('wheel', function(event) {
-        event.preventDefault();
-        effortRating += event.deltaY < 0 ? 1 : -1;
-        if (effortRating < 1) effortRating = 1;
-        if (effortRating > 10) effortRating = 10;
-        updateEffortDisplay();
-      });
 
       const submitButton = document.createElement('button');
       submitButton.className = 'prompt-button prompt-button-primary';
       submitButton.textContent = 'Submit';
 
       submitButton.onclick = function() {
-        entry.effortRating = effortRating;
+        entry.effortRating = parseInt(effortSlider.value);
         saveData();
         renderGoals();
         updateOverallProgress();
@@ -1022,10 +1123,15 @@
       };
 
       promptContent.appendChild(promptText);
+      promptContent.appendChild(lottiePlayer);
       promptContent.appendChild(effortDisplay);
+      promptContent.appendChild(effortSlider);
       promptContent.appendChild(submitButton);
       promptOverlay.appendChild(promptContent);
       document.body.appendChild(promptOverlay);
+
+      // Play the animation
+      lottiePlayer.play();
     }
 
     // Complete Goal Function

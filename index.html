@@ -24,12 +24,14 @@
       align-items: center;
       min-height: 100vh;
       transition: background-color 0.3s, color 0.3s;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+      font-size: 1em; /* Base font size */
     }
 
     /* Header */
     #header {
       width: 100%;
-      padding: 20px;
+      padding: 1.25em; /* 20px */
       border-bottom: 1px solid #333;
       display: flex;
       justify-content: space-between;
@@ -43,14 +45,14 @@
     }
 
     #header h1 {
-      font-size: 32px;
+      font-size: 2em; /* 32px */
       font-weight: bold;
       color: #e91e63;
-      margin-bottom: 5px;
+      margin-bottom: 0.3125em; /* 5px */
     }
 
     #date-display {
-      font-size: 14px;
+      font-size: 0.875em; /* 14px */
       color: #aaaaaa;
     }
 
@@ -62,13 +64,13 @@
 
     #theme-toggle {
       cursor: pointer;
-      font-size: 16px;
-      padding: 10px;
+      font-size: 1em; /* 16px */
+      padding: 0.625em; /* 10px */
       border: none;
       background: none;
       color: #ffffff;
       transition: color 0.3s;
-      margin-right: 20px;
+      margin-right: 1.25em; /* 20px */
     }
 
     #theme-toggle:hover {
@@ -76,7 +78,7 @@
     }
 
     #goals-completed {
-      font-size: 16px;
+      font-size: 1em; /* 16px */
       cursor: pointer;
       text-decoration: underline;
       color: #ffffff;
@@ -84,7 +86,7 @@
 
     /* Main content */
     #main {
-      padding: 20px;
+      padding: 1.25em; /* 20px */
       max-width: 1200px;
       width: 100%;
     }
@@ -93,25 +95,25 @@
     #goal-section {
       display: flex;
       flex-direction: column;
-      margin-bottom: 40px;
+      margin-bottom: 2.5em; /* 40px */
     }
 
     #goal-form {
       display: flex;
       align-items: center;
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 1.25em; /* 20px */
     }
 
     #goal-input {
       flex: 1;
-      padding: 12px 16px;
-      font-size: 16px;
+      padding: 0.75em 1em; /* 12px 16px */
+      font-size: 1em; /* 16px */
       border: 1px solid #555;
       border-radius: 10px;
       background-color: #1e1e1e;
       color: #ffffff;
-      margin-right: 10px;
+      margin-right: 0.625em; /* 10px */
     }
 
     #goal-input::placeholder {
@@ -119,8 +121,8 @@
     }
 
     #add-goal-button {
-      padding: 12px 16px;
-      font-size: 16px;
+      padding: 0.75em 1em; /* 12px 16px */
+      font-size: 1em; /* 16px */
       background-color: #ff1744;
       border: none;
       border-radius: 10px;
@@ -135,9 +137,9 @@
 
     /* Goals */
     .goal {
-      margin-bottom: 20px;
+      margin-bottom: 1.25em; /* 20px */
       border: 1px solid #333;
-      padding: 20px;
+      padding: 1.25em; /* 20px */
       border-radius: 10px;
       background-color: #1e1e1e;
       width: 100%;
@@ -152,17 +154,17 @@
     }
 
     .goal-title {
-      font-size: 22px;
+      font-size: 1.375em; /* 22px */
       color: #ffffff;
       font-weight: bold;
       flex: 1;
-      margin-right: 10px;
+      margin-right: 0.625em; /* 10px */
     }
 
     .priority-label {
-      padding: 5px 10px;
+      padding: 0.3125em 0.625em; /* 5px 10px */
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 0.875em; /* 14px */
       font-weight: bold;
       color: #000000;
     }
@@ -182,7 +184,7 @@
     .goal-buttons {
       display: flex;
       align-items: center;
-      margin-top: 10px;
+      margin-top: 0.625em; /* 10px */
       flex-wrap: wrap;
     }
 
@@ -191,12 +193,12 @@
       border: none;
       color: #ffffff;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 0.875em; /* 14px */
       font-weight: bold;
-      padding: 8px 12px;
+      padding: 0.5em 0.75em; /* 8px 12px */
       border-radius: 10px;
-      margin-right: 10px;
-      margin-top: 10px;
+      margin-right: 0.625em; /* 10px */
+      margin-top: 0.625em; /* 10px */
       transition: background-color 0.3s;
     }
 
@@ -206,7 +208,7 @@
 
     /* Priority Buttons */
     .priority-buttons {
-      margin-top: 10px;
+      margin-top: 0.625em; /* 10px */
     }
 
     .priority-button {
@@ -214,10 +216,10 @@
       border: none;
       color: #ffffff;
       cursor: pointer;
-      font-size: 14px;
-      padding: 6px 10px;
+      font-size: 0.875em; /* 14px */
+      padding: 0.375em 0.625em; /* 6px 10px */
       border-radius: 10px;
-      margin-right: 5px;
+      margin-right: 0.3125em; /* 5px */
       transition: background-color 0.3s;
     }
 
@@ -227,13 +229,13 @@
 
     .journal-input {
       width: 100%;
-      padding: 12px 16px;
-      font-size: 14px;
+      padding: 0.75em 1em; /* 12px 16px */
+      font-size: 0.875em; /* 14px */
       border: 1px solid #555;
       background-color: #1e1e1e;
       color: #ffffff;
       border-radius: 10px;
-      margin-top: 10px;
+      margin-top: 0.625em; /* 10px */
       resize: vertical;
     }
 
@@ -245,15 +247,15 @@
       list-style-type: none;
       padding-left: 0;
       width: 100%;
-      margin-top: 10px;
+      margin-top: 0.625em; /* 10px */
     }
 
     .entry {
-      padding: 12px 16px;
-      margin-bottom: 10px;
+      padding: 0.75em 1em; /* 12px 16px */
+      margin-bottom: 0.625em; /* 10px */
       background-color: #2e2e2e;
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 0.875em; /* 14px */
       color: #ffffff;
       position: relative;
     }
@@ -264,10 +266,10 @@
 
     .entry-buttons {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 0.625em; /* 10px */
+      right: 0.625em; /* 10px */
       display: none;
-      gap: 5px;
+      gap: 0.3125em; /* 5px */
     }
 
     .entry-button {
@@ -275,8 +277,8 @@
       border: none;
       color: #ffffff;
       cursor: pointer;
-      font-size: 14px;
-      padding: 5px;
+      font-size: 0.875em; /* 14px */
+      padding: 0.3125em; /* 5px */
     }
 
     .entry-button:hover {
@@ -285,19 +287,19 @@
 
     .entry-date {
       display: block;
-      font-size: 12px;
+      font-size: 0.75em; /* 12px */
       color: #aaaaaa;
-      margin-top: 5px;
+      margin-top: 0.3125em; /* 5px */
     }
 
     .entry-text {
-      margin-top: 30px; /* Adjust for button spacing */
+      margin-top: 1.875em; /* 30px - Adjust for button spacing */
     }
 
     .effort-display {
-      font-size: 14px;
+      font-size: 0.875em; /* 14px */
       color: #00e676;
-      margin-top: 5px;
+      margin-top: 0.3125em; /* 5px */
     }
 
     /* Progress Bars */
@@ -306,15 +308,15 @@
       background-color: #333;
       border-radius: 10px;
       overflow: hidden;
-      height: 20px;
-      margin-top: 10px;
+      height: 1.25em; /* 20px */
+      margin-top: 0.625em; /* 10px */
     }
 
     .progress-bar {
       height: 100%;
       background-color: #00e676;
       text-align: center;
-      line-height: 20px;
+      line-height: 1.25em; /* 20px */
       color: #000000;
       font-weight: bold;
       transition: width 0.5s;
@@ -323,39 +325,39 @@
     /* Overall Progress */
     #overall-progress {
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 1.25em; /* 20px */
     }
 
     #overall-progress h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
+      font-size: 1.125em; /* 18px */
+      margin-bottom: 0.625em; /* 10px */
     }
 
     /* Action Buttons */
     .action-buttons {
       display: flex;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 1.25em; /* 20px */
       justify-content: space-between;
     }
 
     .action-button-group {
       display: flex;
       flex-wrap: wrap;
-      margin-top: 10px;
+      margin-top: 0.625em; /* 10px */
     }
 
     .action-button {
-      padding: 12px 16px;
-      font-size: 16px;
+      padding: 0.75em 1em; /* 12px 16px */
+      font-size: 1em; /* 16px */
       background-color: #2979ff;
       border: none;
       border-radius: 10px;
       color: #ffffff;
       cursor: pointer;
       font-weight: bold;
-      margin-right: 10px;
-      margin-top: 10px;
+      margin-right: 0.625em; /* 10px */
+      margin-top: 0.625em; /* 10px */
       transition: background-color 0.3s;
     }
 
@@ -379,7 +381,7 @@
     .modal-content {
       background-color: #1e1e1e;
       margin: 5% auto;
-      padding: 20px;
+      padding: 1.25em; /* 20px */
       border: 1px solid #333;
       width: 90%;
       max-width: 600px;
@@ -398,8 +400,8 @@
     }
 
     .modal-list li {
-      padding: 10px;
-      margin-bottom: 10px;
+      padding: 0.625em; /* 10px */
+      margin-bottom: 0.625em; /* 10px */
       background-color: #2e2e2e;
       border-radius: 10px;
     }
@@ -408,11 +410,11 @@
       background: none;
       border: none;
       color: #ffffff;
-      font-size: 24px;
+      font-size: 1.5em; /* 24px */
       cursor: pointer;
       position: absolute;
-      top: 10px;
-      right: 20px;
+      top: 0.625em; /* 10px */
+      right: 1.25em; /* 20px */
     }
 
     /* Prompt Overlay */
@@ -431,7 +433,7 @@
 
     .prompt-content {
       background-color: #1e1e1e;
-      padding: 20px;
+      padding: 1.25em; /* 20px */
       border-radius: 10px;
       text-align: center;
       width: 90%;
@@ -440,18 +442,18 @@
     }
 
     .prompt-content p {
-      margin-bottom: 20px;
-      font-size: 16px;
+      margin-bottom: 1.25em; /* 20px */
+      font-size: 1em; /* 16px */
     }
 
     .prompt-button {
-      padding: 10px 16px;
-      margin: 5px;
+      padding: 0.625em 1em; /* 10px 16px */
+      margin: 0.3125em; /* 5px */
       border: none;
       border-radius: 10px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 0.875em; /* 14px */
     }
 
     .prompt-button:hover {
@@ -475,9 +477,9 @@
 
     .reflection-input {
       width: 100%;
-      height: 80px;
-      margin-bottom: 20px;
-      padding: 12px 16px;
+      height: 5em; /* 80px */
+      margin-bottom: 1.25em; /* 20px */
+      padding: 0.75em 1em; /* 12px 16px */
       border: 1px solid #555;
       border-radius: 10px;
       background-color: #2e2e2e;
@@ -507,7 +509,7 @@
     .emoji-animation {
       position: fixed;
       bottom: 0;
-      font-size: 50px;
+      font-size: 3.125em; /* 50px */
       animation: riseUp 3s ease-in-out;
       z-index: 1002;
     }
@@ -610,34 +612,88 @@
       color: #000000;
     }
 
-    /* Responsive */
-    @media (max-width: 767px) {
+    /* Responsive Enhancements */
+
+    /* Small devices (landscape phones, 576px and up) */
+    @media (max-width: 575.98px) {
+      #header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .goal-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .goal-button {
+        width: 100%;
+        margin-right: 0;
+      }
+
+      /* Adjust modals for smaller screens */
+      .modal-content {
+        width: 95%;
+        max-width: 95%;
+      }
+
+      /* Adjust Lottie player size */
+      lottie-player {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    /* Medium devices (tablets, 768px and up) */
+    @media (max-width: 767.98px) {
+      /* Existing styles for .action-buttons */
       .action-buttons {
         flex-direction: column;
+        align-items: center;
       }
+
       .action-button-group {
         justify-content: center;
       }
+
+      /* Adjust progress bars */
+      .progress-bar-container {
+        height: 0.9375em; /* 15px */
+      }
+
+      .progress-bar {
+        line-height: 0.9375em; /* 15px */
+        font-size: 0.75em; /* 12px */
+      }
+
+      /* Adjust Lottie player size */
+      lottie-player {
+        width: 175px;
+        height: 175px;
+      }
     }
+
+    /* Large devices (desktops, 992px and up) */
+    /* Optional: Add any additional styles for larger screens if needed */
   </style>
 </head>
 <body>
-  <div id="header">
+  <header id="header">
     <div id="header-left">
       <h1>Ambition Tracker</h1>
       <div id="date-display"></div>
     </div>
     <div id="header-right">
-      <button id="theme-toggle">Toggle Theme</button>
+      <button id="theme-toggle" aria-label="Toggle Theme">Toggle Theme</button>
       <span id="goals-completed" onclick="toggleCompletedGoalsModal()">Goals Completed: <span id="completed-count">0</span></span>
     </div>
-  </div>
+  </header>
 
   <!-- Modals -->
   <!-- Completed Goals Modal -->
   <div id="completed-goals-modal" class="modal">
     <div class="modal-content">
-      <button class="close-modal-button" onclick="toggleCompletedGoalsModal()">×</button>
+      <button class="close-modal-button" onclick="toggleCompletedGoalsModal()" aria-label="Close Completed Goals Modal">×</button>
       <h2>Completed Goals</h2>
       <ul id="completed-goals-list" class="modal-list"></ul>
     </div>
@@ -646,7 +702,7 @@
   <!-- Stats Modal -->
   <div id="stats-modal" class="modal">
     <div class="modal-content">
-      <button class="close-modal-button" onclick="toggleStatsModal()">×</button>
+      <button class="close-modal-button" onclick="toggleStatsModal()" aria-label="Close Stats Modal">×</button>
       <h2>Statistics</h2>
       <div id="stats-content"></div>
     </div>
@@ -655,44 +711,44 @@
   <!-- Archived Goals Modal -->
   <div id="archived-goals-modal" class="modal">
     <div class="modal-content">
-      <button class="close-modal-button" onclick="toggleArchivedGoalsModal()">×</button>
+      <button class="close-modal-button" onclick="toggleArchivedGoalsModal()" aria-label="Close Archived Goals Modal">×</button>
       <h2>Archived Goals</h2>
       <ul id="archived-goals-list" class="modal-list"></ul>
     </div>
   </div>
 
-  <div id="main">
+  <main id="main">
     <!-- Overall Progress -->
-    <div id="overall-progress">
+    <section id="overall-progress">
       <h2>Overall Progress</h2>
       <div class="progress-bar-container">
         <div class="progress-bar" id="overall-progress-bar" style="width: 0%;">0%</div>
       </div>
-    </div>
+    </section>
 
     <!-- Goal Section -->
-    <div id="goal-section">
+    <section id="goal-section">
       <form id="goal-form">
-        <input type="text" id="goal-input" placeholder="Add a new goal..." required>
+        <input type="text" id="goal-input" placeholder="Add a new goal..." required aria-label="Add a new goal">
         <button type="submit" id="add-goal-button">Add Goal</button>
       </form>
-    </div>
+    </section>
 
     <!-- Goals List -->
-    <div id="goals"></div>
+    <section id="goals"></section>
 
     <!-- Action Buttons -->
-    <div class="action-buttons">
+    <section class="action-buttons">
       <div class="action-button-group">
-        <button class="action-button" onclick="resetData()" style="background-color: #ff1744;">Reset</button>
-        <button class="action-button" onclick="toggleStatsModal()" style="background-color: #ff6d00;">View Stats</button>
+        <button class="action-button" onclick="resetData()" style="background-color: #ff1744;" aria-label="Reset Data">Reset</button>
+        <button class="action-button" onclick="toggleStatsModal()" style="background-color: #ff6d00;" aria-label="View Statistics">View Stats</button>
       </div>
       <div class="action-button-group">
-        <button class="action-button" onclick="downloadLogs()">Download Logs</button>
-        <button class="action-button" onclick="toggleArchivedGoalsModal()">Archived Goals</button>
+        <button class="action-button" onclick="downloadLogs()" aria-label="Download Logs">Download Logs</button>
+        <button class="action-button" onclick="toggleArchivedGoalsModal()" aria-label="View Archived Goals">Archived Goals</button>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <script>
     // Current date setup
@@ -872,6 +928,7 @@
       const journalInput = document.createElement('textarea');
       journalInput.className = 'journal-input';
       journalInput.placeholder = 'Write your journal entry here...';
+      journalInput.setAttribute('aria-label', 'Journal Entry');
 
       journalInput.addEventListener('keydown', function(event) {
         if (event.key === 'Enter' && !event.shiftKey) {
@@ -899,6 +956,7 @@
           entryText.className = 'entry-text';
           entryText.textContent = entry.text;
           entryText.contentEditable = false;
+          entryText.setAttribute('aria-label', 'Journal Entry Text');
 
           entryText.addEventListener('click', function() {
             entryText.contentEditable = true;
@@ -961,7 +1019,7 @@
 
           // Rate Effort Button below Edit and Delete
           const rateEffortButtonContainer = document.createElement('div');
-          rateEffortButtonContainer.style.marginTop = '10px';
+          rateEffortButtonContainer.style.marginTop = '0.625em'; /* 10px */
           rateEffortButtonContainer.appendChild(rateEffortButton);
           entryItem.appendChild(rateEffortButtonContainer);
 
@@ -1100,11 +1158,11 @@
       effortSlider.max = '10';
       effortSlider.value = entry.effortRating > 0 ? entry.effortRating : '1';
       effortSlider.style.width = '100%';
-      effortSlider.style.marginTop = '20px';
+      effortSlider.style.marginTop = '0.625em'; /* 10px */
 
       const effortDisplay = document.createElement('div');
-      effortDisplay.style.fontSize = '24px';
-      effortDisplay.style.margin = '10px 0';
+      effortDisplay.style.fontSize = '1.5em'; /* 24px */
+      effortDisplay.style.margin = '0.625em 0'; /* 10px 0 */
       effortDisplay.textContent = `Effort: ${effortSlider.value}/10`;
 
       effortSlider.oninput = function() {
@@ -1216,7 +1274,7 @@
 
         const completionDate = document.createElement('div');
         completionDate.textContent = `Completed on: ${new Date(goal.completedAt).toLocaleString()}`;
-        completionDate.style.fontSize = '12px';
+        completionDate.style.fontSize = '0.75em'; /* 12px */
         completionDate.style.color = '#aaaaaa';
 
         listItem.appendChild(goalTitle);
